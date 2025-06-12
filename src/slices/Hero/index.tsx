@@ -7,6 +7,7 @@ import clsx from "clsx";
 
 import { Bounded } from "@/components/Bounded";
 import FadeIn from "@/components/FadeIn";
+import { RevealText } from "@/components/RevealText";
 
 /**
  * Props for `Hero`.
@@ -25,7 +26,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     >
       <FadeIn
         vars={{ scale: 1, opacity: 0.5 }}
-        className="bg-image absolute inset-0 scale-125 opacity-0"
+        className="bg-image absolute inset-0 scale-125 opacity-0 motion-safe:scale-125"
       >
         <PrismicNextImage
           field={slice.primary.image}
@@ -36,18 +37,24 @@ const Hero: FC<HeroProps> = ({ slice }) => {
         />
       </FadeIn>
       <div className="relative flex h-screen flex-col justify-center">
-        <div className="font-display max-w-xl text-6xl leading-tight text-neutral-50 md:text-7xl lg:text-8xl">
-          <PrismicRichText field={slice.primary.heading} />
-        </div>
+        <RevealText
+          field={slice.primary.heading}
+          id={`hero-heading`}
+          duration={1.5}
+          staggerAmount={0.2}
+          as={"h1"}
+          ease="sign.out"
+          className="font-display max-w-xl text-6xl leading-none text-neutral-50 md:text-7xl lg:text-8xl"
+        ></RevealText>
         <FadeIn
-          vars={{ delay: 0.5, duration: 1.2, ease: "sine.out" }}
+          vars={{ delay: 0.9, duration: 0.9, ease: "sine.out" }}
           className="mt-6 max-w-md translate-y-8 text-lg text-neutral-100"
         >
           <PrismicRichText field={slice.primary.body} />
         </FadeIn>
         <FadeIn
           className="mt-8 translate-y-5"
-          vars={{ delay: 1.3, duration: 1.3, ease: "sine.in" }}
+          vars={{ delay: 1.8, duration: 0.9, ease: "sine.out" }}
         >
           {slice.primary.button.map((link) => (
             <PrismicNextLink

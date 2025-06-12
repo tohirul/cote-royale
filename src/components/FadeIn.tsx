@@ -18,13 +18,26 @@ function FadeIn({ children, className = "", vars = {} }: Props) {
 
   useGSAP(
     () => {
-      gsap.to(containerRef.current, {
-        scale: 1,
-        duration: 5,
-        opacity: 1,
-        ease: "power3.out",
-        y: 0,
-        ...vars,
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.to(containerRef.current, {
+          scale: 1,
+          duration: 4,
+          opacity: 1,
+          ease: "power3.out",
+          y: 0,
+          ...vars,
+        });
+      });
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.to(containerRef.current, {
+          scale: 1,
+          duration: 0.5,
+          opacity: 1,
+          ease: "none",
+          y: 0,
+          stagger: 0,
+        });
       });
     },
     { scope: containerRef },
