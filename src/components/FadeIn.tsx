@@ -13,6 +13,7 @@ type Props = {
   className?: string;
   start?: string;
   vars?: gsap.TweenVars;
+  ease?: string;
 };
 
 function FadeIn({
@@ -20,6 +21,7 @@ function FadeIn({
   className = "",
   start = "top 80%",
   vars = {},
+  ease = "power3.out",
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -31,7 +33,7 @@ function FadeIn({
           scale: 1,
           duration: 4,
           opacity: 1,
-          ease: "power3.out",
+          ease: ease,
           y: 0,
           ...vars,
           scrollTrigger: {

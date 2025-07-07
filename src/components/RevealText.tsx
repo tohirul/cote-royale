@@ -19,6 +19,8 @@ type Props = {
   ease?: string;
   vars?: Record<string, unknown>;
   align?: "start" | "center" | "end";
+  triggerStart?: string;
+  triggerEnd?: string;
 };
 
 export const RevealText = ({
@@ -32,6 +34,8 @@ export const RevealText = ({
   ease = "power3.out",
   vars = {},
   align = "start",
+  triggerStart = "top 80%",
+  triggerEnd = "bottom 20%",
 }: Props) => {
   const words = asText(field).split(" ");
 
@@ -47,7 +51,11 @@ export const RevealText = ({
           stagger: staggerAmount,
           duration,
           ease: ease,
-          ...vars,
+          scrollTrigger: {
+            trigger: componentRef.current,
+            start: triggerStart,
+            end: triggerEnd,
+          },
         });
       });
       mm.add("(prefers-reduced-motion: reduce)", () => {

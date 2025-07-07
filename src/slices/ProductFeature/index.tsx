@@ -37,7 +37,7 @@ const ProductFeature: FC<ProductFeatureProps> = async ({ slice }) => {
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-3 lg:grid-rows-[auto,auto]">
         <FadeIn
           className="translate-y-16 opacity-0 lg:col-span-2 lg:row-span-2"
-          vars={{ duration: 1 }}
+          vars={{ duration: 0.5 }}
         >
           <PrismicNextImage field={slice.primary.image} />
         </FadeIn>
@@ -53,7 +53,7 @@ const ProductFeature: FC<ProductFeatureProps> = async ({ slice }) => {
         {/* Fregrance */}
         <FadeIn
           className="animate-in relative translate-y-16 self-end bg-white/10 opacity-0 will-change-transform"
-          vars={{ duration: 1, delay: 1 }}
+          vars={{ duration: 1, delay: 0.5 }}
           start="top 90%"
         >
           <PrismicNextImage
